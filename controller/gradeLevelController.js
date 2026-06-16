@@ -1,6 +1,6 @@
 const gradeLevelModel = require('../models/gradeLevelModel');
 
-async function getGradeLevel(req,res){
+async function getAllGradeLevel(req,res){
   try{
     const results = await gradeLevelModel.getGradeLevel();
 
@@ -17,5 +17,5 @@ async function getGradeLevel(req,res){
   }
 }
 module.exports = {
-  getGradeLevel
+  getAllGradeLevel
 }

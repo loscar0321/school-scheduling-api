@@ -3,6 +3,6 @@ const router = express.Router();
 
 const gradeLevelController = require('../controller/gradeLevelController');
 
-router.get('/', gradeLevelController.getGradeLevel);
+router.get('/', gradeLevelController.getAllGradeLevel);
 
 module.exports = router;
