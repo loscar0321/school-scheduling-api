@@ -12,8 +12,14 @@ async function getAllUsers() {
   return results;
 }
 
-async function getUser(id) {
+async function getUserById(id) {
   const [results] = await db.query('SELECT first_name, last_name, username FROM users WHERE id =?', [id]);
+
+  return results[0];
+}
+
+async function getUserByUsername(username){
+  const [results] = await db.query('SELECT id, first_name, last_name, username, password FROM users WHERE username =?', [username]);
 
   return results[0];
 }
@@ -21,5 +27,6 @@ async function getUser(id) {
 module.exports = {
   createUser,
   getAllUsers,
-  getUser
+  getUserById,
+  getUserByUsername
 }

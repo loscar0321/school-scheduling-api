@@ -1,14 +1,14 @@
 const mysql = require('mysql2');
 
 const db = mysql.createPool({
-  host : 'localhost',
-  user : 'root',
-  password : '',
-  database : 'school_sched'
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'school_sched'
 });
 
 db.getConnection((err) => {
-  if(err){
+  if (err) {
     console.error('DB CONNECTION ERROR:', err.message);
     return;
   }

@@ -1,37 +1,5 @@
 const userModel = require('../models/userModel');
 
-async function createUser(req, res) {
-  const { first_name, last_name, username, password } = req.body;
-
-  if (!first_name || !last_name || !username || !password) {
-    return res.status(400).json({
-      success: false,
-      message: 'Invalid Input'
-    })
-  }
-
-  try {
-    const results = await userModel.createUser(first_name, last_name, username, password);
-
-    return res.status(201).json({
-      success: true,
-      message: 'User Created',
-      data: results.insertId,
-      first_name,
-      last_name,
-      username,
-      password
-    })
-  }
-  catch (err) {
-    console.log('Controller Error', err);
-    return res.status(500).json({
-      success: false,
-      message: 'SERVER ERROR'
-    })
-  }
-}
-
 async function getAllUsers(req, res) {
   try {
     const results = await userModel.getAllUsers();
@@ -50,7 +18,7 @@ async function getAllUsers(req, res) {
   }
 }
 
-async function getUser(req, res) {
+async function getUserById(req, res) {
   const id = Number(req.params.id);
 
   if (isNaN(id) || id <= 0) {
@@ -61,7 +29,7 @@ async function getUser(req, res) {
   }
 
   try {
-    const results = await userModel.getUser(id);
+    const results = await userModel.getUserById(id);
 
     if (!results) {
       return res.status(404).json({
@@ -85,7 +53,6 @@ async function getUser(req, res) {
 }
 
 module.exports = {
-  createUser,
   getAllUsers,
-  getUser
+  getUserById
 }
